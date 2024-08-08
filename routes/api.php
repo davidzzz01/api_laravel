@@ -15,16 +15,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'listProducts']);
+    Route::get('/{id}', [ProductController::class, 'getProduct']);
+    Route::post('/', [ProductController::class, 'createProduct']);
+    Route::put('/{id}', [ProductController::class, 'updateProduct']);
+    Route::delete('/{id}', [ProductController::class, 'destroy']);
+});
 
-Route::get('/products', [ProductController::class, 'listProducts']);
-Route::get('/products/{id}', [ProductController::class, 'getProduct']);
-Route::post('/products', [ProductController::class, 'createProduct']);
-Route::put('/products/{id}', [ProductController::class, 'updateProduct']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
-Route::get('/users', [UserController::class, 'users']);
-Route::get('/users/{id}', [UserController::class, 'getUser']);
-Route::post('/users', [UserController::class, 'createUser']);
-Route::put('/users/{id}', [UserController::class, 'updateUser']);
-Route::delete('/users/{id}', [UserController::class, 'destroyUser']);
-
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'users']);
+    Route::get('/{id}', [UserController::class, 'getUser']);
+    Route::post('/', [UserController::class, 'createUser']);
+    Route::put('/{id}', [UserController::class, 'updateUser']);
+    Route::delete('/{id}', [UserController::class, 'destroyUser']);
+});
